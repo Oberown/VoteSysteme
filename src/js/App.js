@@ -58,7 +58,7 @@ const App = () => {
   //var dataAjax = useFetch("after");
   //console.log(dataAjax);
   // console.log(voteData);
- const state = {
+ state = {
     postulant: postulantData[postulantIndex],
     voteTypes: voteData
   };
