@@ -5,7 +5,7 @@ class Postulant extends React.Component {
     const postulantData = this.props.profile;
     return (<div>
       {postulantData.name}
-      <img src={postulantData.photo} />
+      <img src={postulantData.photo} alt="" />
     </div>);
   }
 }

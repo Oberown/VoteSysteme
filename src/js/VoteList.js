@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Vote from './Vote';
 
 //https://codesandbox.io/s/react-hooks-demo-u7xd9
