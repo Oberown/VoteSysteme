@@ -58,13 +58,14 @@ const App = () => {
   //var dataAjax = useFetch("after");
   //console.log(dataAjax);
   // console.log(voteData);
- state = {
+
+ let state = {
     postulant: postulantData[postulantIndex],
     voteTypes: voteData
   };
 
   const onVoteClick = (vote, background) => {
-    this.state.postulant.Vote = vote;
+    state.postulant.Vote = vote;
     setBackgroundVote(background);
   };
 
@@ -91,8 +92,8 @@ const App = () => {
 
   return (
     <div style={{ backgroundColor: backgroundVote }}>
-        <Postulant profile={this.state.postulant} />
-        <VoteList voteTypes={this.state.voteTypes} onClick={onVoteClick} />
+        <Postulant profile={state.postulant} />
+        <VoteList voteTypes={state.voteTypes} onClick={onVoteClick} />
         <ChangePostulantButton
           onClick={onChangePostulant}
           indexChange={-1}
