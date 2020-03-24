@@ -39,14 +39,13 @@ const voteData = [
 const App = () => {
   const [backgroundVote, setBackgroundVote] = useState("");
   const [postulantIndex, setPostulantIndex] = useState(0);
-  console.log("oui");
+  console.log("Load App");
   var dataAjax = useFetch("after");
-  console.log(dataAjax);
   
 
  let state = {
     postulant: postulantData[postulantIndex],
-    voteTypes: voteData //<--- dataAjax
+    voteTypes:  dataAjax === undefined ? voteData : dataAjax
   };
 
   const onVoteClick = (vote, background) => {
