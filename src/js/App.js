@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import VoteList from './VoteList';
 import Postulant from './Postulant';
 import ChangePostulantButton from './ChangePostulantButton';
+import { useFetch } from './useFetch';
+//https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js
 
 const postulantData = [
   {
@@ -34,34 +36,17 @@ const voteData = [
   { id: "3", label: "Non", color: "#FF0000" }
 ];
 
-const useFetch = url => {
-  const [data, updateData] = useState("oo");
-
-  useEffect(() => {
-    async function fetchData() {
-      /*const resp = await axios.get(
-        "https://improparis.com/gestion/postulant/AjaxLevelAppreciation.php"
-      );
-     
-      updateData(resp.data);*/
-    }
-    fetchData();
-  }, []);
-
-  return data;
-};
-
 const App = () => {
   const [backgroundVote, setBackgroundVote] = useState("");
   const [postulantIndex, setPostulantIndex] = useState(0);
   console.log("oui");
-  //var dataAjax = useFetch("after");
-  //console.log(dataAjax);
-  // console.log(voteData);
+  var dataAjax = useFetch("after");
+  console.log(dataAjax);
+  
 
  let state = {
     postulant: postulantData[postulantIndex],
-    voteTypes: voteData
+    voteTypes: voteData //<--- dataAjax
   };
 
   const onVoteClick = (vote, background) => {
