@@ -6,7 +6,7 @@ export const useFetch = url => {
   useEffect(() => {
     async function fetchData() {
       console.log("je load les data url: " + url)
-      const resp = await axios.get("https://improparis.com/gestion/postulant/AjaxLevelAppreciation.php");
+      const resp = await axios.get(url);
 
       updateData(resp.data);
     }

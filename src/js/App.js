@@ -3,61 +3,51 @@ import VoteList from './VoteList';
 import Postulant from './Postulant';
 import ChangePostulantButton from './ChangePostulantButton';
 import { useFetch } from './useFetch';
+import axios from 'axios';
+var querystring = require('querystring');
 //https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js
 
-const postulantData = [
-  {
-    name: "Dan Abramov",
-    photo: "https://avatars0.githubusercontent.com/u/810438?v=4"
-  },
-  {
-    name: "Sophie Alpert",
-    photo: "https://avatars2.githubusercontent.com/u/6820?v=4"
-  },
-  {
-    name: "Sebastian Marfkbage",
-    photo: "https://avatars2.githubusercontent.com/u/63648?v=4"
-  },
-  {
-    name: "Frank herbet",
-    photo:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Frank_Herbert_-_1984.jpg/220px-Frank_Herbert_-_1984.jpg"
-  },
-  {
-    name: "Tolkien",
-    photo:
-      "https://upload.wikimedia.org/wikipedia/commons/b/b4/Tolkien_1916.jpg"
-  }
-];
-
-const voteData = [
+/*
+const voteDataFake = [
   { id: "1", label: "Oui", color: "#00FF00" },
   { id: "2", label: "Neutre", color: "#999999" },
   { id: "3", label: "Non", color: "#FF0000" }
-];
+];*/
 
-const App = () => {
+const  App = () => {
   const [backgroundVote, setBackgroundVote] = useState("");
   const [postulantIndex, setPostulantIndex] = useState(0);
-  console.log("Load App");
-  var dataAjax = useFetch("after");
-  
+  var dataAjaxVoteTypes = useFetch("https://improparis.com/gestion/postulant/AjaxLevelAppreciation.php");
+  var dataAjaxPostulants = useFetch("https://improparis.com/gestion/postulant/AjaxPostulants.php");
+
+  const postulantData = dataAjaxPostulants ?? [{}];
 
  let state = {
-    postulant: postulantData[postulantIndex],
-    voteTypes:  dataAjax === undefined ? voteData : dataAjax
+    postulant:  postulantData[postulantIndex],
+    voteTypes:  dataAjaxVoteTypes ?? []
   };
 
   const onVoteClick = (vote, background) => {
-    state.postulant.Vote = vote;
+    state.postulant.vote = vote;
     setBackgroundVote(background);
+   
+    axios.post('https://improparis.com/gestion/postulant/AjaxPostulantVote.php', querystring.stringify({
+      idPostulant: state.postulant.id,
+      idlevelappreciation: vote.id
+    }))
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   };
 
   const onChangePostulant = async index => {
     var newIndex = getNewPostulantIndex(index);
     setPostulantIndex(newIndex);
-    if (postulantData[newIndex].Vote !== undefined) {
-      setBackgroundVote(postulantData[newIndex].Vote.color);
+    if (postulantData[newIndex].vote !== null) {
+      setBackgroundVote(postulantData[newIndex].vote.color);
     } else setBackgroundVote("");
   };
 
