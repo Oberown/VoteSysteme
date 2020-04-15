@@ -6,14 +6,8 @@ import { useFetch } from './useFetch';
 import axios from 'axios';
 import { useSwipeable } from 'react-swipeable'
 var querystring = require('querystring');
-//https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js
 //https://www.npmjs.com/package/react-swipeable
-/*
-const voteDataFake = [
-  { id: "1", label: "Oui", color: "#00FF00" },
-  { id: "2", label: "Neutre", color: "#999999" },
-  { id: "3", label: "Non", color: "#FF0000" }
-];*/
+
 
 const  App = () => {
   const [backgroundVote, setBackgroundVote] = useState("");
@@ -37,10 +31,10 @@ const  App = () => {
       idlevelappreciation: vote.id
     }))
     .then(function (response) {
-      console.log(response);
+      
     })
     .catch(function (error) {
-      console.log(error);
+      
     });
   };
 

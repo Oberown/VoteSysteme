@@ -1,9 +1,7 @@
 import React from 'react';
 import Vote from './Vote';
 
-//https://codesandbox.io/s/react-hooks-demo-u7xd9
 const VoteList = props => {
-    //console.log(props);
     return (
       <div>
         {props.voteTypes.map(vote => (
