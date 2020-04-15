@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import VoteList from './VoteList';
 import Postulant from './Postulant';
 import ChangePostulantButton from './ChangePostulantButton';
@@ -34,7 +34,7 @@ const  App = () => {
       
     })
     .catch(function (error) {
-      
+
     });
   };
 
@@ -65,6 +65,25 @@ const  App = () => {
     preventDefaultTouchmoveEvent: true,
     trackMouse: true
   });
+
+  const moveFunction = useCallback((event) => {
+    if(event.keyCode === 37) {
+      alert('gauche')
+      //Do whatever when esc is pressed
+    }
+    else if(event.keyCode === 39) {
+      alert('droite')
+      //Do whatever when esc is pressed
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", moveFunction, false);
+
+    return () => {
+      document.removeEventListener("keydown", moveFunction, false);
+    };
+  }, []);
 
   return (
     <div {...handlers} style={{ backgroundColor: backgroundVote }}>
