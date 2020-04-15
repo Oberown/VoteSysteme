@@ -4,9 +4,10 @@ import Postulant from './Postulant';
 import ChangePostulantButton from './ChangePostulantButton';
 import { useFetch } from './useFetch';
 import axios from 'axios';
+import { useSwipeable } from 'react-swipeable'
 var querystring = require('querystring');
 //https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js
-
+//https://www.npmjs.com/package/react-swipeable
 /*
 const voteDataFake = [
   { id: "1", label: "Oui", color: "#00FF00" },
@@ -64,8 +65,15 @@ const  App = () => {
   const previousPostulant = postulantData[getNewPostulantIndex(-1)];
   const nextPostulant = postulantData[getNewPostulantIndex(1)];
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => onChangePostulant(-1),
+    onSwipedRight: () => onChangePostulant(1),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true
+  });
+
   return (
-    <div style={{ backgroundColor: backgroundVote }}>
+    <div {...handlers} style={{ backgroundColor: backgroundVote }}>
         <Postulant profile={state.postulant} />
         <VoteList voteTypes={state.voteTypes} onClick={onVoteClick} />
         <ChangePostulantButton
