@@ -41,9 +41,6 @@ const  App = () => {
   const onChangePostulant = async index => {
     var newIndex = getNewPostulantIndex(index);
     setPostulantIndex(newIndex);
-    if (postulantData[newIndex].vote !== null) {
-      setBackgroundVote(postulantData[newIndex].vote.color);
-    } else setBackgroundVote("");
   };
 
   const getNewPostulantIndex = indexChangement => {
@@ -84,7 +81,7 @@ function moveFunction(event) {
   }, []);
 
   return (
-    <div {...handlers} style={{ backgroundColor: backgroundVote }}>
+    <div {...handlers} style={{ backgroundColor: state.postulant.vote === undefined || state.postulant.vote === null ? '' : state.postulant.vote.color}}>
         <Postulant profile={state.postulant} />
         <VoteList voteTypes={state.voteTypes} onClick={onVoteClick} />
         <ChangePostulantButton
