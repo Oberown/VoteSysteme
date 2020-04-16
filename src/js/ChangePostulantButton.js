@@ -6,7 +6,7 @@ class ChangePostulantButton extends React.Component {
     return (<div onClick={() => onClick(indexChange)} style={{
       color: postulant.vote !== null && postulant.vote !== undefined ? postulant.vote.color : "#000000"
     }}>
-      {indexChange === -1 ? "Précedent" : "Suivant"}[{postulant.name}]
+      {indexChange === -1 ? "Précedent" : "Suivant"} [{postulant.name}]
     </div>);
   }
 }

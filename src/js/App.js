@@ -66,16 +66,14 @@ const  App = () => {
     trackMouse: true
   });
 
-  const moveFunction = useCallback((event) => {
+function moveFunction(event) {
     if(event.keyCode === 37) {
-      alert('gauche')
-      //Do whatever when esc is pressed
     }
     else if(event.keyCode === 39) {
-      alert('droite')
-      //Do whatever when esc is pressed
+      console.log('droite', postulantData);
+      onChangePostulant(1);
     }
-  }, []);
+  };
 
   useEffect(() => {
     document.addEventListener("keydown", moveFunction, false);
