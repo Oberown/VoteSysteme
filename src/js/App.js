@@ -57,8 +57,8 @@ const  App = () => {
   const nextPostulant = postulantData[getNewPostulantIndex(1)];
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => onChangePostulant(-1),
-    onSwipedRight: () => onChangePostulant(1),
+    onSwipedLeft: () => onChangePostulant(1),
+    onSwipedRight: () => onChangePostulant(-1),
     preventDefaultTouchmoveEvent: true,
     trackMouse: true
   });
@@ -68,7 +68,7 @@ function moveFunction(event) {
     }
     else if(event.keyCode === 39) {
       console.log('droite', postulantData);
-      onChangePostulant(1);
+      //onChangePostulant(1);
     }
   };
 
