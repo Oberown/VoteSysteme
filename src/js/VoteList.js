@@ -2,7 +2,7 @@ import React from 'react';
 import Vote from './Vote';
 
 const VoteList = props => {
-  var empty ={"id":"","label":"Annuler","rank":"999","color":"Blue","category":"X"};
+  var empty ={"id":"","label":"Annuler","rank":"999","color":"Blue","category":"-"};
  
     return (
       <div>
