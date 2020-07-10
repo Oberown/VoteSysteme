@@ -12,10 +12,15 @@ var querystring = require('querystring');
 const  App = () => {
   const [backgroundVote, setBackgroundVote] = useState("");
   const [postulantIndex, setPostulantIndex] = useState(0);
-  var dataAjaxVoteTypes = useFetch("https://improparis.com/gestion/postulant/AjaxLevelAppreciation.php");
-  var dataAjaxPostulants = useFetch("https://improparis.com/gestion/postulant/AjaxPostulants.php");
+  const params = new URLSearchParams(window.location.search)
+const idParam = params.get('id');
 
-  const postulantData = dataAjaxPostulants ?? [{}];
+  var dataAjaxVoteTypes = useFetch("https://improparis.com/gestion/postulant/AjaxLevelAppreciation.php");
+  var dataAjaxPostulants = useFetch("https://improparis.com/gestion/postulant/AjaxPostulants.php?id="+idParam);
+
+
+
+const postulantData = dataAjaxPostulants ?? [{}];
 
  let state = {
     postulant:  postulantData[postulantIndex],
